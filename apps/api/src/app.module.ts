@@ -8,10 +8,12 @@ import { AuthModule } from './auth/auth.module';
 import { UsersModule } from './users/users.module';
 import { VehicleService } from './vehicle/vehicle.service';
 import { VehicleController } from './vehicle/vehicle.controller';
+import { ReviewController } from './review/review.controller';
+import { ReviewService } from './review/review.service';
 
 @Module({
   imports: [AuthModule, UsersModule],
-  controllers: [AppController, AuthController, VehicleController],
-  providers: [AppService, PrismaService, AuthService, VehicleService],
+  controllers: [AppController, AuthController, VehicleController, ReviewController],
+  providers: [AppService, PrismaService, AuthService, VehicleService, ReviewService],
 })
 export class AppModule {}

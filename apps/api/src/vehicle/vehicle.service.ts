@@ -6,6 +6,17 @@ import { z } from 'zod';
 export class VehicleService {
   constructor(private readonly prisma: PrismaService) {}
 
+  async getVehicle(vehicleId: number) {
+    return this.prisma.vehicle.findUnique({
+      where: {
+        id: vehicleId,
+      },
+      include: {
+        owner: true,
+      },
+    });
+  }
+
   async getVehicles(userId: number, page: number, perPage: number) {
     return this.prisma.vehicle.findMany({
       where: {
