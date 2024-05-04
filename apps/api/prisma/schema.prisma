@@ -22,7 +22,7 @@ model Vehicle {
   registrationNumber String   @unique
   model              String
   year               Int
-  freeSeats          Int
+  seats          Int
   ownerId            Int
   owner              User     @relation(fields: [ownerId], references: [id])
   createdAt          DateTime @default(now())
