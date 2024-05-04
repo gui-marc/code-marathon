@@ -25,6 +25,7 @@ router.beforeEach(async (to, from, next) => {
   await progressStore.setProgress(10)
 
   // todo: add auth here
+  next()
 })
 
 router.afterEach(async (to, from) => {

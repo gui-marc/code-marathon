@@ -1,6 +1,6 @@
 <template>
   <div
-    v-if="progressStore.progress > 0"
+    v-if="progressStore.progress > 0 && progressStore.progress < 100"
     class="w-full h-1 relative bg-gray-100"
   >
     <div

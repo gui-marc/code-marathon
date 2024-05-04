@@ -1,19 +1,23 @@
-import { Injectable } from '@nestjs/common';
-import axios from 'axios';
+import { HttpException, Injectable } from '@nestjs/common';
+import { Request } from 'express';
+import { PrismaService } from 'nestjs-prisma';
 
 @Injectable()
 export class AuthService {
+  constructor(private readonly prisma: PrismaService) {}
+
   //Enable oauth2 login for the user
-  async oauth2Login(access_token: string): Promise<any> {
-    //Get user info
-    axios
-      .get('https://fenix.tecnico.ulisboa.pt/tecnico-api/v2/person', {
-        headers: {
-          Authorization: `Bearer ${access_token}`,
-        },
-      })
-      .then((response) => {
-        console.log(response.data);
-      });
+  async authenticate(request: Request) {
+    const bearerToken = request.headers.authorization;
+    const id = bearerToken.split(' ')[1];
+    const user = this.prisma.user.findUnique({
+      where: {
+        id: +id,
+      },
+    });
+
+    if (!user) throw new HttpException('Unauthorized', 401);
+
+    return user;
   }
 }
