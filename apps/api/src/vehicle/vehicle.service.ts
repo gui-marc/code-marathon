@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { HttpException, Injectable } from '@nestjs/common';
 import { PrismaService } from 'nestjs-prisma';
 import { z } from 'zod';
 
@@ -40,10 +40,10 @@ export class VehicleService {
     const parsedData = schema.safeParse(data);
 
     if (!parsedData.success) {
-      throw new Error('Invalid data');
+      throw new HttpException('Invalid data', 400);
     }
 
-    return this.prisma.vehicle.create({
+    return await this.prisma.vehicle.create({
       data: {
         ...(parsedData.data as {
           registrationNumber: string;

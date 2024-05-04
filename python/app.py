@@ -109,7 +109,7 @@ def create_vehicle():
 
     try:
         headers = {'Authorization' : f'Bearer {current_user['istId']}'}
-        data = requests.post(f'{BASE_URL}/vehicle/create', json={'owner_id': owner_id, 'model': model, 'registration_number': registration_number, 'year': year, 'seats': seats}, headers=headers)
+        data = requests.post(f'{BASE_URL}/vehicles/create', json={'owner_id': owner_id, 'model': model, 'registration_number': registration_number, 'year': year, 'seats': seats}, headers=headers)
         print('Vehicle created successfully')
     except Exception as e:
         print('Failed to create vehicle')
@@ -128,6 +128,7 @@ def list_vehicles():
         if response.status_code == 200:
             vehicles = response.json()
             
+            print(vehicles)
             if len(vehicles) == 0:
                 print('No vehicles found')
                 return
