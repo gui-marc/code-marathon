@@ -22,7 +22,7 @@ model Vehicle {
   registrationNumber String   @unique
   model              String
   year               Int
-  seats          Int
+  seats              Int
   ownerId            Int
   owner              User     @relation(fields: [ownerId], references: [id])
   createdAt          DateTime @default(now())
@@ -38,6 +38,7 @@ model Voyage {
   driver    User     @relation(fields: [driverId], references: [id])
   from      String
   to        String
+  seats     Int
   distance  Int
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
