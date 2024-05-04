@@ -1,10 +1,21 @@
 import axios from 'axios'
 
 const client = axios.create({
-  baseURL: import.meta.env.VITE_API_BASE_URL,
+  baseURL: 'http://localhost:8080',
   headers: {
     'Content-Type': 'application/json',
+    
   },
 })
+
+client.interceptors.response.use(
+  (response) => response,
+  (error) => {
+    console.log('Request failed')
+    console.log(error.message)
+
+    return error
+  },
+)
 
 export default client

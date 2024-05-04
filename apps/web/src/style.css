@@ -1,3 +1,15 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.btn {
+  @apply flex items-center justify-center h-12 px-4 text-sm font-medium text-center transition-all duration-150 rounded-md cursor-pointer;
+}
+
+.btn--primary {
+  @apply text-white bg-blue-500 hover:bg-blue-600;
+}
+
+.input {
+  @apply block w-full h-12 px-4 text-sm text-gray-800 transition-all duration-150 border border-gray-300 rounded-md placeholder:text-gray-500;
+}

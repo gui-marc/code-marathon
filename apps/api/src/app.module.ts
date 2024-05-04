@@ -11,8 +11,6 @@ import { ReviewController } from './review/review.controller';
 import { ReviewService } from './review/review.service';
 import { PrismaModule } from 'nestjs-prisma';
 import { ReviewModule } from './review/review.module';
-import { UserController } from './user/user.controller';
-import { UserModule } from './user/user.module';
 
 @Module({
   imports: [
@@ -22,14 +20,12 @@ import { UserModule } from './user/user.module';
       isGlobal: true,
     }),
     ReviewModule,
-    UserModule,
   ],
   controllers: [
     AppController,
     AuthController,
     VehicleController,
     ReviewController,
-    UserController,
   ],
   providers: [AppService, AuthService, VehicleService, ReviewService],
 })

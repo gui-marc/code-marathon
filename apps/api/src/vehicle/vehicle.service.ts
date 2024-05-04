@@ -17,13 +17,14 @@ export class VehicleService {
     });
   }
 
-  async getVehicles(userId: number, page: number, perPage: number) {
+  async getVehiclesByOwner(userId: number) {
+    console.log(userId);
     return this.prisma.vehicle.findMany({
       where: {
-        ownerId: userId,
+        owner: {
+          id: userId,
+        },
       },
-      take: perPage,
-      skip: (page - 1) * perPage,
     });
   }
 

@@ -4,6 +4,8 @@ import ProgressBar from './components/ProgressBar.vue'
 </script>
 
 <template>
-  <ProgressBar />
-  <RouterView />
+  <div class="h-full bg-gray-50">
+    <ProgressBar />
+    <RouterView />
+  </div>
 </template>
