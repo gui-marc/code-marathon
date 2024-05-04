@@ -13,6 +13,8 @@ import { PrismaModule } from 'nestjs-prisma';
 import { ReviewModule } from './review/review.module';
 import { UserController } from './user/user.controller';
 import { UserModule } from './user/user.module';
+import { VoyageService } from './voyage/voyage.service';
+import { VoyageModule } from './voyage/voyage.module';
 
 @Module({
   imports: [
@@ -23,6 +25,7 @@ import { UserModule } from './user/user.module';
     }),
     ReviewModule,
     UserModule,
+    VoyageModule,
   ],
   controllers: [
     AppController,
@@ -31,6 +34,6 @@ import { UserModule } from './user/user.module';
     ReviewController,
     UserController,
   ],
-  providers: [AppService, AuthService, VehicleService, ReviewService],
+  providers: [AppService, AuthService, VehicleService, ReviewService, VoyageService],
 })
 export class AppModule {}
