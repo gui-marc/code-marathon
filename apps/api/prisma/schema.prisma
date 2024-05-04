@@ -6,3 +6,53 @@ datasource db {
   provider = "sqlite"
   url      = env("DATABASE_URL")
 }
+
+model User {
+  id      Int       @id @default(autoincrement())
+  name    String
+  email   String    @unique
+  istId   String    @unique
+  vehicle Vehicle[]
+  Voyage  Voyage[]
+  Review  Review[]
+}
+
+model Vehicle {
+  id                 Int      @id @default(autoincrement())
+  registrationNumber String   @unique
+  model              String
+  year               Int
+  freeSeats          Int
+  ownerId            Int
+  owner              User     @relation(fields: [ownerId], references: [id])
+  createdAt          DateTime @default(now())
+  updatedAt          DateTime @updatedAt
+  Voyage             Voyage[]
+}
+
+model Voyage {
+  id        Int      @id @default(autoincrement())
+  vehicleId Int
+  vehicle   Vehicle  @relation(fields: [vehicleId], references: [id])
+  driverId  Int
+  driver    User     @relation(fields: [driverId], references: [id])
+  from      String
+  to        String
+  distance  Int
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  Review    Review[]
+}
+
+model Review {
+  id        Int      @id @default(autoincrement())
+  rating    Int
+  comment   String?
+  voyageId  Int
+  voyage    Voyage   @relation(fields: [voyageId], references: [id])
+  userId    Int
+  user      User     @relation(fields: [userId], references: [id])
+  isDriver  Boolean
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
